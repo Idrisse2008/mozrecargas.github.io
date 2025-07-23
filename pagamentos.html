@@ -1,0 +1,145 @@
+<<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pagamento - Moz Recargas</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #000;
+      color: #fff;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 50px auto;
+      background-color: #111;
+      padding: 20px;
+      border-radius: 15px;
+      border: 2px solid #00ff00;
+      box-shadow: 0 0 10px #00ff00;
+    }
+
+    h1 {
+      color: #00ff00;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    #nomeProduto, #precoProduto {
+      text-align: center;
+      font-size: 18px;
+      margin: 10px 0;
+    }
+
+    label {
+      display: block;
+      margin: 10px 0 5px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      background-color: #222;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      color: #fff;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #00ff00;
+      color: #000;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #00cc00;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Pagamento</h1>
+    <h2 id="nomeProduto">Carregando...</h2>
+    <p id="precoProduto"></p>
+
+    <form id="formPagamento">
+      <label for="telefone">Número de Telefone</label>
+      <input type="tel" id="telefone" required placeholder="Ex: 84xxxxxxx">
+
+      <label for="metodo">Método de Pagamento</label>
+      <select id="metodo" required>
+        <option value="">Escolher</option>
+        <option value="mpesa">M-Pesa</option>
+        <option value="emola">e-Mola</option>
+      </select>
+
+      <button type="submit">Confirmar Pagamento</button>
+    </form>
+  </div>
+
+  <!-- Firebase + Script -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getDatabase, ref, push, set } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBK7VWZXC4eGhSM09jSgEFi2DZKMtx8tUw",
+      authDomain: "moz-recargas-2f537.firebaseapp.com",
+      databaseURL: "https://moz-recargas-2f537-default-rtdb.firebaseio.com",
+      projectId: "moz-recargas-2f537",
+      storageBucket: "moz-recargas-2f537.appspot.com",
+      messagingSenderId: "394578070225",
+      appId: "1:394578070225:web:b2db4c9b1509ad295153f0",
+      measurementId: "G-X5N3NF1FXR"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    const nomeEl = document.getElementById("nomeProduto");
+    const precoEl = document.getElementById("precoProduto");
+
+    const nome = localStorage.getItem("produtoNome");
+    const preco = localStorage.getItem("produtoPreco");
+
+    if (nomeEl) nomeEl.textContent = nome || "Produto";
+    if (precoEl) precoEl.textContent = preco ? `Preço: ${preco} MZN` : "Preço: -";
+
+    const form = document.getElementById("formPagamento");
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const telefone = document.getElementById("telefone").value;
+      const metodo = document.getElementById("metodo").value;
+
+      const pagamentoRef = push(ref(db, "pagamentos"));
+
+      set(pagamentoRef, {
+        produto: nome,
+        preco: preco,
+        telefone: telefone,
+        metodo: metodo,
+        data: new Date().toLocaleString()
+      }).then(() => {
+        alert("Pagamento registrado com sucesso!");
+        window.location.href = "index.html";
+      }).catch((error) => {
+        alert("Erro ao registrar pagamento: " + error.message);
+      });
+    });
+  </script>
+</body>
+</html>

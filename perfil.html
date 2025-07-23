@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfil - Moz Recargas</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #00ff00;
+      margin-bottom: 20px;
+    }
+
+    .info {
+      background-color: #111;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 30px;
+      width: 100%;
+      max-width: 300px;
+    }
+
+    .info p {
+      margin: 10px 0;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background-color: #00ff00;
+      color: #000;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Perfil do Usuário</h1>
+  <div class="info" id="perfilInfo">
+    <p>Carregando informações...</p>
+  </div>
+
+  <button onclick="location.href='index.html'">Voltar à Página Inicial</button>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyBK7VWZXC4eGhSM09jSgEFi2DZKMtx8tUw",
+      authDomain: "moz-recargas-2f537.firebaseapp.com",
+      projectId: "moz-recargas-2f537",
+      storageBucket: "moz-recargas-2f537.appspot.com",
+      messagingSenderId: "394578070225",
+      appId: "1:394578070225:web:b2db4c9b1509ad295153f0"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+
+    const perfilInfo = document.getElementById("perfilInfo");
+
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        perfilInfo.innerHTML = `
+          <p><strong>Email:</strong> ${user.email}</p>
+          <p><strong>UID:</strong> ${user.uid}</p>
+        `;
+      } else {
+        perfilInfo.innerHTML = `
+          <p>Você não está logado.</p>
+          <button onclick="location.href='login.html'">Fazer Login</button>
+        `;
+      }
+    });
+  </script>
+
+</body>
+</html>

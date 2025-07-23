@@ -1,0 +1,180 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #000;
+  color: #fff;
+}
+
+/* Header com logotipo */
+header {
+  background-color: #111;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #00ff00;
+}
+
+/* Logotipo no canto esquerdo */
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 40px;
+  width: auto;
+}
+
+.logo span {
+  margin-left: 10px;
+  color: #00ff00;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* Link de login no canto direito */
+header a {
+  color: #00ff00;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+header a:hover {
+  text-decoration: underline;
+}
+
+/* Banner */
+.banner {
+  width: 100%;
+  max-height: 200px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.banner img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-bottom: 2px solid #00ff00;
+}
+
+/* Produtos organizados fixo 2 por linha */
+.produtos {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  padding: 20px;
+  justify-items: center;
+}
+
+/* Cada produto */
+.produto {
+  background-color: #1a1a1a;
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+  width: 100%;
+  max-width: 180px;
+  border: 1px solid #333;
+  transition: transform 0.2s;
+}
+
+.produto:hover {
+  transform: scale(1.03);
+}
+
+.produto img {
+  width: 100%;
+  max-width: 130px;
+  height: auto;
+  object-fit: contain;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.produto h3 {
+  margin: 10px 0 5px;
+  font-size: 16px;
+}
+
+.produto p {
+  margin: 5px 0;
+  color: #aaa;
+  font-size: 14px;
+}
+
+/* Botões */
+button {
+  background-color: #00ff00;
+  color: #000;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+button:hover {
+  background-color: #00cc00;
+}
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content {
+  background-color: #111;
+  margin: 10% auto;
+  padding: 20px;
+  border: 1px solid #00ff00;
+  width: 90%;
+  max-width: 400px;
+  border-radius: 10px;
+  text-align: center;
+  color: white;
+}
+
+.modal-content input,
+.modal-content select {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 5px;
+  background: #222;
+  color: #fff;
+}
+
+.fechar {
+  color: #00ff00;
+  float: right;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* Rodapé */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #111;
+  color: #777;
+  margin-top: 40px;
+}

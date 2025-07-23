@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <title>Clash of Clans - Pacotes</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      padding: 10px 20px;
+      background-color: #111;
+      border-bottom: 2px solid #00ff00;
+      text-align: center;
+    }
+    header h1 {
+      color: #00ff00;
+    }
+    .produtos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+    .produto {
+      background-color: #1a1a1a;
+      border-radius: 10px;
+      padding: 10px;
+      text-align: center;
+    }
+    .produto img {
+      max-width: 100%;
+      border-radius: 10px;
+      height: 100px;
+      object-fit: cover;
+    }
+    .produto h2 {
+      margin: 10px 0;
+      font-size: 16px;
+    }
+    .produto p {
+      margin: 5px 0;
+    }
+    .produto button {
+      background-color: #00ff00;
+      border: none;
+      padding: 10px 15px;
+      color: #000;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Clash of Clans - Pacotes</h1>
+  </header>
+
+  <main>
+    <section class="produtos">
+      <div class="produto">
+        <img src="imagens/clashof-clans.jpg" alt="80 Gemas COC">
+        <h2>80 Gemas</h2>
+        <p>Preço: 50 MZN</p>
+        <button onclick="comprar('Clash of Clans 80 Gemas', 50)">Comprar</button>
+      </div>
+      <div class="produto">
+        <img src="imagens/clashof-clans.jpg" alt="500 Gemas COC">
+        <h2>500 Gemas</h2>
+        <p>Preço: 200 MZN</p>
+        <button onclick="comprar('Clash of Clans 500 Gemas', 200)">Comprar</button>
+      </div>
+      <div class="produto">
+        <img src="imagens/clashof-clans.jpg" alt="1200 Gemas COC">
+        <h2>1200 Gemas</h2>
+        <p>Preço: 400 MZN</p>
+        <button onclick="comprar('Clash of Clans 1200 Gemas', 400)">Comprar</button>
+      </div>
+      <div class="produto">
+        <img src="imagens/clashof-clans.jpg" alt="2500 Gemas COC">
+        <h2>2500 Gemas</h2>
+        <p>Preço: 750 MZN</p>
+        <button onclick="comprar('Clash of Clans 2500 Gemas', 750)">Comprar</button>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    function comprar(nome, preco) {
+      localStorage.setItem("produtoNome", nome);
+      localStorage.setItem("produtoPreco", preco);
+      window.location.href = "pagamentos.html";
+    }
+  </script>
+</body>
+</html>
